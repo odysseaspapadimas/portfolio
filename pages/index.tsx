@@ -5,8 +5,6 @@ import Image from 'next/image'
 import styles from '../styles/Home.module.css'
 
 export default function Home() {
-  const { colorScheme, toggleColorScheme } = useMantineColorScheme();
-
   return (
     <>
       <Head>
@@ -16,7 +14,7 @@ export default function Home() {
       </Head>
 
       <div>
-
+    
       </div>
     </>
   )

@@ -14,6 +14,7 @@ specifiers:
   eslint: 8.26.0
   eslint-config-next: 12.2.6
   next: 12.2.6
+  next-themes: ^0.2.1
   postcss: ^8.4.18
   react: 18.2.0
   react-dom: 18.2.0
@@ -28,6 +29,7 @@ dependencies:
   '@mantine/next': 5.6.3_jjjedlqrofrfsaa5qlmrtla4mq
   '@tabler/icons': 1.108.0_biqbaboplfbrettd7655fr4n2y
   next: 12.2.6_qtpcxnaaarbm4ws7ughq6oxfve
+  next-themes: 0.2.1_b3bmilkfv52uw6if2uulixtp2m
   react: 18.2.0
   react-dom: 18.2.0_react@18.2.0
 
@@ -2354,6 +2356,18 @@ packages:
   /natural-compare/1.4.0:
     resolution: {integrity: sha512-OWND8ei3VtNC9h7V60qff3SVobHr996CTwgxubgyQYEpg290h9J0buyECNNJexkFm5sOajh5G116RYA1c8ZMSw==}
     dev: true
+
+  /next-themes/0.2.1_b3bmilkfv52uw6if2uulixtp2m:
+    resolution: {integrity: sha512-B+AKNfYNIzh0vqQQKqQItTS8evEouKD7H5Hj3kmuPERwddR2TxvDSFZuTj6T7Jfn1oyeUyJMydPl1Bkxkh0W7A==}
+    peerDependencies:
+      next: '*'
+      react: '*'
+      react-dom: '*'
+    dependencies:
+      next: 12.2.6_qtpcxnaaarbm4ws7ughq6oxfve
+      react: 18.2.0
+      react-dom: 18.2.0_react@18.2.0
+    dev: false
 
   /next/12.2.6_qtpcxnaaarbm4ws7ughq6oxfve:
     resolution: {integrity: sha512-Wlln0vp91NVj4f2Tr5c1e7ZXPiwZ+XEefPiuoTnt/VopOh5xK7//KCl1pCicYZP3P2mRbpuKs5PvcVQG/+EC7w==}
