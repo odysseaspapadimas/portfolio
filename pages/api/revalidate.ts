@@ -13,7 +13,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse<
     return res.status(401).json({ message: "Must be a POST request" })
   }
 
-  if (!isValidRequest(req, secret)) {
+  if (req.query.secret !== process.env.SANITY_SECRET) {
     console.log("Invalid request")
     res.status(401).json({ message: "Invalid signature" })
     return
