@@ -1,8 +1,11 @@
+import { isValidRequest } from "@sanity/webhook";
 import type { NextApiRequest, NextApiResponse } from "next";
 
 type Data = {
   message: string;
 };
+
+const secret = process.env.SANITY_SECRET as string;
 
 export default async function handler(
   req: NextApiRequest,
@@ -12,6 +15,10 @@ export default async function handler(
     const {
       body: { type, slug },
     } = req;
+
+    if(!isValidRequest(req, secret)) {
+        return res.status(401).json({ message: "Invalid request" });
+    }
 
     console.log(type, slug)
 

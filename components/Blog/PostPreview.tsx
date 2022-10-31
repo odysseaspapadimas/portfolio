@@ -19,7 +19,7 @@ const PostPreview = ({ title, createdAt, slug, description }: Props) => {
                 {hover && <div className="absolute -left-4 text-2xl font-bold" style={{ color: theme.colors.blue[8] }}>|</div>}
                 <h2 onMouseEnter={() => setHover(true)} onMouseLeave={() => setHover(false)} className="font-bold text-3xl underline underline-offset-4">{title}</h2>
             </NextLink>
-            <p className="text-sm">{dayjs(createdAt).format("MMMM DD, YYYY")} &bull; 3 min read</p>
+            <p className="text-sm">{dayjs(createdAt).format("MMMM DD, YYYY")}</p>
             <p>{description}</p>
         </div>
     )

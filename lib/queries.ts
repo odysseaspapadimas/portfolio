@@ -31,7 +31,7 @@ export const getPaths = async () => {
 };
 
 export const getPosts = async () => {
-  const data = await sanity.fetch(`*[_type == "post"]{${postFields}}`);
+  const data = await sanity.fetch(`*[_type == "post"] | order(_createdAt desc) {${postFields}}`);
   return data;
 };
 

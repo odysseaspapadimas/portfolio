@@ -3,7 +3,6 @@ import Head from "next/head"
 import Image from "next/image"
 import PostPreview from "../components/Blog/PostPreview"
 import { getPosts } from "../lib/queries"
-import sanity from "../lib/sanity"
 import { Post } from "../lib/types"
 
 const stayTunedGif = "https://media4.giphy.com/media/fnDY3C9MKukcER71r7/giphy.gif?cid=ecf05e47p649csfxb0ualo5kef044jenud8p4qoftel8gi96&rid=giphy.gif&ct=g"
