@@ -1,38 +1,45 @@
-import { isValidRequest } from "@sanity/webhook"
-import type { NextApiRequest, NextApiResponse } from "next"
+import { isValidRequest } from "@sanity/webhook";
+import type { NextApiRequest, NextApiResponse } from "next";
 
 type Data = {
-  message: string
-}
+  message: string;
+};
 
 const secret = process.env.SANITY_SECRET as string;
 
-export default async function handler(req: NextApiRequest, res: NextApiResponse<Data>) {
+export default async function handler(
+  req: NextApiRequest,
+  res: NextApiResponse<Data>
+) {
   if (req.method !== "POST") {
-    console.error("Must be a POST request")
-    return res.status(401).json({ message: "Must be a POST request" })
+    console.error("Must be a POST request");
+    return res.status(401).json({ message: "Must be a POST request" });
   }
 
-  if (req.query.secret !== process.env.SANITY_SECRET) {
-    console.log("Invalid request")
-    res.status(401).json({ message: "Invalid signature" })
-    return
-  }
+  console.log(req, "req");
+
+  //   if (req.query.secret === process.env.SANITY_SECRET) {
+  //     console.log("Invalid request")
+  //     res.status(401).json({ message: "Invalid signature" })
+  //     return
+  //   }
 
   try {
     const {
       body: { type, slug },
-    } = req
+    } = req;
 
     switch (type) {
       case "post":
-        await res.revalidate(`/post/${slug}`)
-        console.log(`Revalidated /post/${slug} with type ${type}`)
-        return res.json({ message: `Revalidated "${type}" with slug "${slug}"` })
+        await res.revalidate(`/post/${slug}`);
+        console.log(`Revalidated /post/${slug} with type ${type}`);
+        return res.json({
+          message: `Revalidated "${type}" with slug "${slug}"`,
+        });
     }
 
-    return res.json({ message: "No managed type" })
+    return res.json({ message: "No managed type" });
   } catch (err) {
-    return res.status(500).send({ message: "Error revalidating" })
+    return res.status(500).send({ message: "Error revalidating" });
   }
 }
