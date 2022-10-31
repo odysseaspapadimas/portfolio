@@ -1,4 +1,4 @@
-import { isValidRequest } from "@sanity/webhook";
+import { isValidSignature } from "@sanity/webhook";
 import type { NextApiRequest, NextApiResponse } from "next";
 
 type Data = {
@@ -40,6 +40,7 @@ export default async function handler(
 
     return res.json({ message: "No managed type" });
   } catch (err) {
+    console.log(err, 'error validating')
     return res.status(500).send({ message: "Error revalidating" });
   }
 }
