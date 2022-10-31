@@ -1,4 +1,5 @@
 import '../styles/globals.css'
+import '../styles/prism-one-dark.css';
 import type { AppProps } from 'next/app'
 import { ColorScheme, ColorSchemeProvider, Container, createEmotionCache, MantineProvider } from '@mantine/core';
 import { useHotkeys, useLocalStorage } from '@mantine/hooks';
