@@ -16,7 +16,7 @@ export default async function handler(
     console.log(type, slug)
 
     await res.revalidate('/blog')
-    await res.revalidate(`/post/${slug}`);
+    await res.revalidate(`/blog/${slug}`);
     console.log(`Revalidated /post/${slug} with type ${type}`);
     return res.json({ message: `Revalidated "${type}" with slug "${slug}"` });
   } else {
