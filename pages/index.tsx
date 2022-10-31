@@ -4,6 +4,7 @@ import Projects from '../components/Home/Projects';
 import { createClient } from "next-sanity";
 import { Project } from '../lib/types';
 import sanity from '../lib/sanity';
+import { getAllProjects } from '../lib/queries';
 
 type Props = {
   projects: Project[];
@@ -33,8 +34,8 @@ export default function Home({ projects } : Props) {
 }
 
 
-export async function getStaticProps() {
-  const projects = await sanity.fetch(`*[_type == "project"] | order(_createdAt asc) {_id, title, github, link, "image":image.asset->url, categories}`);
+export const getStaticProps = async() => {
+  const projects = await getAllProjects();
 
   return {
     props: {

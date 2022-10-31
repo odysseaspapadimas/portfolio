@@ -3,9 +3,12 @@ import { useMediaQuery } from '@mantine/hooks';
 import { NextLink } from '@mantine/next';
 import { IconMoonStars, IconSun } from '@tabler/icons';
 import { useTheme } from 'next-themes';
+import { useRouter } from 'next/router';
 import { useState } from 'react';
 
 const Header = () => {
+    const router = useRouter();
+
     const { colorScheme, toggleColorScheme } = useMantineColorScheme();
     const { theme, setTheme } = useTheme();
 
@@ -36,7 +39,7 @@ const Header = () => {
         <div className="flex items-center " style={{ height: 70 }}>
             {isDesktop ? (
                 <>
-                    <NavLinks theme={colorScheme} />
+                    <NavLinks theme={colorScheme} route={router.route} />
 
                     <ToggleTheme />
                 </>
@@ -52,7 +55,7 @@ const Header = () => {
                         padding="xl"
                         size="100%"
                     >
-                        <NavLinks theme={colorScheme} />
+                        <NavLinks theme={colorScheme} route={router.route} />
 
                         <ToggleTheme />
                     </Drawer>
@@ -63,13 +66,21 @@ const Header = () => {
 }
 export default Header
 
-const NavLinks = ({ theme }: { theme: ColorScheme }) => (
+const NavLinks = ({ theme, route }: { theme: ColorScheme, route: string }) => (
     <div className="flex md:space-x-4 items-center flex-col md:flex-row space-y-4 md:space-y-0 text-xl sm:text-base">
         <NextLink href="/">
-            <Button variant="subtle" styles={{label: {fontSize: '1rem'}}} color={theme === "dark" ? "gray" : "dark"}>Home</Button>
+            {theme === "dark" ? (
+                <Button variant="subtle" color="gray" styles={{ label: { fontSize: '1rem' } }} >Home</Button>
+            ) : (
+                <Button variant="light" color="dark" styles={{ label: { fontSize: '1rem' } }}>Home</Button>
+            )}
         </NextLink>
         <NextLink href="/blog">
-            <Button variant="subtle" styles={{label: {fontSize: '1rem'}}} color={theme === "dark" ? "gray" : "dark"}>Blog</Button>
+            {theme === "dark" ? (
+                <Button variant="subtle" color="gray" styles={{ label: { fontSize: '1rem' } }} >Blog</Button>
+            ) : (
+                <Button variant="light" color="dark" styles={{ label: { fontSize: '1rem' } }}>Blog</Button>
+            )}
         </NextLink >
     </div>
 )
