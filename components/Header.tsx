@@ -57,8 +57,8 @@ const Header = () => {
                     >
                         <NavLinks theme={colorScheme} route={router.asPath.split('/').slice(0, 2).join('/')} />
 
-                        <ToggleTheme />
                     </Drawer>
+                    <ToggleTheme />
                 </>
             )}
         </div >
