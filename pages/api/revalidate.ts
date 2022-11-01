@@ -16,13 +16,11 @@ export default async function handler(
       body: { type, slug },
     } = req;
 
-    if(!isValidRequest(req, secret)) {
-        return res.status(401).json({ message: "Invalid request" });
-    }
+    console.log(req, "req");
 
-    console.log(type, slug)
+    console.log(type, slug);
 
-    await res.revalidate('/blog')
+    await res.revalidate("/blog");
     await res.revalidate(`/blog/${slug}`);
     console.log(`Revalidated /post/${slug} with type ${type}`);
     return res.json({ message: `Revalidated "${type}" with slug "${slug}"` });

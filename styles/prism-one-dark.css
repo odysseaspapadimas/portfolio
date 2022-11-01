@@ -28,9 +28,21 @@
  * --syntax-cursor-line: hsla(220, 100%, 80%, 0.04);
  */
 
+ code {
+	background: rgb(40, 44, 52);
+	color: rgb(22, 72, 172);
+	padding: 0.25rem;
+	border-radius: 2.5px;
+	font-weight: 500 !important;
+ }
+
+ code::before, code::after {
+	content: none !important;
+ }
+
 code[class*="language-"],
 pre[class*="language-"] {
-	background: hsl(220, 13%, 18%);
+	background: rgb(40, 44, 52);
 	color: hsl(220, 14%, 71%);
 	font-size: 0.85rem;
 	text-shadow: 0 1px rgba(0, 0, 0, 0.3);
@@ -290,13 +302,13 @@ div.code-toolbar > .toolbar.toolbar > .toolbar-item > span:focus {
 
 /* Line Highlight plugin overrides */
 /* The highlighted line itself */
-.line-highlight.line-highlight {
-	background: hsla(220, 100%, 80%, 0.04);
+.highlight-line.highlight-line {
+	background: hsla(220, 100%, 80%, 0.1);
 }
 
 /* Default line numbers in Line Highlight plugin */
-.line-highlight.line-highlight:before,
-.line-highlight.line-highlight[data-end]:after {
+.highlight-line.highlight-line:before,
+.highlight-line.highlight-line[data-end]:after {
 	background: hsl(220, 13%, 26%);
 	color: hsl(220, 14%, 71%);
 	padding: 0.1em 0.6em;

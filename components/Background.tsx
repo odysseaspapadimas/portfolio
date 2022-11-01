@@ -1,7 +1,6 @@
 import { Stars } from "@react-three/drei";
-import { Canvas, useFrame, useLoader } from "@react-three/fiber";
-import { Ref, useRef } from "react";
-import * as THREE from "three";
+import { Canvas, useFrame } from "@react-three/fiber";
+import { useRef } from "react";
 
 function StarsElement() {
     const ref = useRef() as any;
@@ -10,7 +9,7 @@ function StarsElement() {
         ref.current.rotation.y += 0.0003;
         ref.current.rotation.z += 0.0003;
     });
-    return <Stars ref={ref} />;
+    return <Stars ref={ref} depth={100} />;
 }
 
 const Background = () => {
@@ -24,7 +23,6 @@ const Background = () => {
             }}
         >
             <StarsElement />
-            <ambientLight />
         </Canvas>
     )
 }
