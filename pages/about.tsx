@@ -56,12 +56,12 @@ const About = () => {
                     <h2 className="text-2xl font-semibold">Contact</h2>
                     <div className="w-full h-[3px] bg-blue-500 mt-1"></div>
 
-                    <Group spacing={6} className="mt-4">
-                        <IconMail size={40} />
+                    <div className="mt-4 flex items-center space-x-2">
+                        <IconMail size={30} />
                         <CopyButton value="odysseas.patra@gmail.com">
                             {({ copied, copy }) => (
-                                <div onClick={copy} className={`relative cursor-pointer flex space-x-2 border ${copied ? "border-green-500" : ""} rounded-md p-2`}>
-                                    <p className="text-lg font-medium">odysseas.patra@gmail.com</p>
+                                <button onClick={copy} className={`relative cursor-pointer select-none flex space-x-2 border  ${copied ? "border-green-500" : ""} rounded-md p-2`}>
+                                    <span className="text-base font-medium">odysseas.patra@gmail.com</span>
                                     {copied ? (
                                         <>
                                             <IconClipboardCheck />
@@ -70,10 +70,10 @@ const About = () => {
                                     ) : (
                                         <IconClipboard />
                                     )}
-                                </div>
+                                </button>
                             )}
                         </CopyButton>
-                    </Group>
+                    </div>
                 </div>
             </div>
         </>
