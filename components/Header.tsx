@@ -9,6 +9,8 @@ import { useState } from 'react';
 const Header = () => {
     const router = useRouter();
 
+    console.log(router, 'router')
+
     const { colorScheme, toggleColorScheme } = useMantineColorScheme();
     const { theme, setTheme } = useTheme();
 
@@ -34,12 +36,13 @@ const Header = () => {
             {colorScheme === 'dark' ? <IconSun size={18} /> : <IconMoonStars size={18} />}
         </ActionIcon>
     )
-
+//split string on second slash
+console.log(router.asPath.split('/').slice(0, 2).join('/'), 'router split')
     return (
         <div className="flex items-center " style={{ height: 70 }}>
             {isDesktop ? (
                 <>
-                    <NavLinks theme={colorScheme} route={router.route} />
+                    <NavLinks theme={colorScheme} route={router.asPath.split('/').slice(0, 2).join('/')} />
 
                     <ToggleTheme />
                 </>
@@ -55,7 +58,7 @@ const Header = () => {
                         padding="xl"
                         size="100%"
                     >
-                        <NavLinks theme={colorScheme} route={router.route} />
+                        <NavLinks theme={colorScheme} route={router.asPath.split('/').slice(0, 2).join('/')} />
 
                         <ToggleTheme />
                     </Drawer>
@@ -70,16 +73,16 @@ const NavLinks = ({ theme, route }: { theme: ColorScheme, route: string }) => (
     <div className="flex md:space-x-4 items-center flex-col md:flex-row space-y-4 md:space-y-0 text-xl sm:text-base">
         <NextLink href="/">
             {theme === "dark" ? (
-                <Button variant="subtle" color="gray" styles={{ label: { fontSize: '1rem' } }} >Home</Button>
+                <Button variant={route === "/" ? "light" : "subtle"}color="gray" classNames={{ label: `${route === "/" ? "text-white" : "text-gray-300"}` }} styles={{ label: { fontSize: '1rem' } }} >Home</Button>
             ) : (
-                <Button variant="light" color="dark" styles={{ label: { fontSize: '1rem' } }}>Home</Button>
+                <Button  variant={route === "/" ? "default" : "light"} color={route === "/" ? "dark" : "gray"} styles={{ label: { fontSize: '1rem' } }}>Home</Button>
             )}
         </NextLink>
         <NextLink href="/blog">
             {theme === "dark" ? (
-                <Button variant="subtle" color="gray" styles={{ label: { fontSize: '1rem' } }} >Blog</Button>
+                <Button variant={route === "/blog" ? "light" : "subtle"} color="gray" styles={{ label: { fontSize: '1rem' } }} >Blog</Button>
             ) : (
-                <Button variant="light" color="dark" styles={{ label: { fontSize: '1rem' } }}>Blog</Button>
+                <Button variant={route === "/blog" ? "default" : "light"} color={route === "/blog" ? "dark" : "gray"}  styles={{ label: { fontSize: '1rem' } }}>Blog</Button>
             )}
         </NextLink >
     </div>
