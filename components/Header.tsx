@@ -9,8 +9,6 @@ import { useState } from 'react';
 const Header = () => {
     const router = useRouter();
 
-    console.log(router, 'router')
-
     const { colorScheme, toggleColorScheme } = useMantineColorScheme();
     const { theme, setTheme } = useTheme();
 
@@ -36,8 +34,7 @@ const Header = () => {
             {colorScheme === 'dark' ? <IconSun size={18} /> : <IconMoonStars size={18} />}
         </ActionIcon>
     )
-//split string on second slash
-console.log(router.asPath.split('/').slice(0, 2).join('/'), 'router split')
+
     return (
         <div className="flex items-center " style={{ height: 70 }}>
             {isDesktop ? (
