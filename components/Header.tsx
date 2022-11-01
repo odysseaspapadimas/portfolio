@@ -70,16 +70,23 @@ const NavLinks = ({ theme, route }: { theme: ColorScheme, route: string }) => (
     <div className="flex md:space-x-4 items-center flex-col md:flex-row space-y-4 md:space-y-0 text-xl sm:text-base">
         <NextLink href="/">
             {theme === "dark" ? (
-                <Button variant={route === "/" ? "light" : "subtle"}color="gray" classNames={{ label: `${route === "/" ? "text-white" : "text-gray-300"}` }} styles={{ label: { fontSize: '1rem' } }} >Home</Button>
+                <Button variant={route === "/" ? "light" : "subtle"} color="gray" classNames={{ label: `${route === "/" ? "text-white" : "text-gray-300"}` }} styles={{ label: { fontSize: '1rem' } }} >Home</Button>
             ) : (
-                <Button  variant={route === "/" ? "default" : "light"} color={route === "/" ? "dark" : "gray"} styles={{ label: { fontSize: '1rem' } }}>Home</Button>
+                <Button variant={route === "/" ? "default" : "light"} color={route === "/" ? "dark" : "gray"} styles={{ label: { fontSize: '1rem' } }}>Home</Button>
             )}
         </NextLink>
         <NextLink href="/blog">
             {theme === "dark" ? (
                 <Button variant={route === "/blog" ? "light" : "subtle"} color="gray" styles={{ label: { fontSize: '1rem' } }} >Blog</Button>
             ) : (
-                <Button variant={route === "/blog" ? "default" : "light"} color={route === "/blog" ? "dark" : "gray"}  styles={{ label: { fontSize: '1rem' } }}>Blog</Button>
+                <Button variant={route === "/blog" ? "default" : "light"} color={route === "/blog" ? "dark" : "gray"} styles={{ label: { fontSize: '1rem' } }}>Blog</Button>
+            )}
+        </NextLink >
+        <NextLink href="/about">
+            {theme === "dark" ? (
+                <Button variant={route === "/about" ? "light" : "subtle"} color="gray" styles={{ label: { fontSize: '1rem' } }} >About</Button>
+            ) : (
+                <Button variant={route === "/about" ? "default" : "light"} color={route === "/about" ? "dark" : "gray"} styles={{ label: { fontSize: '1rem' } }}>About</Button>
             )}
         </NextLink >
     </div>
