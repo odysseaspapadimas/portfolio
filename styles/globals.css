@@ -7,7 +7,7 @@
     padding-left: 0;
 }
 
-li::marker {
+.contains-task-list li::marker {
     display: none;
     content: none;
 }
