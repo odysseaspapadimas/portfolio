@@ -1,6 +1,7 @@
 import { ActionIcon, Button, Group, Paper, Text, Title, useMantineTheme } from "@mantine/core"
 import { NextLink } from "@mantine/next";
 import { IconBrandGithub, IconExternalLink, IconWorldWww } from "@tabler/icons"
+import Image from "next/image";
 import { Project } from "../../lib/types";
 
 const image = "https://images.unsplash.com/photo-1559494007-9f5847c49d94?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=400&q=80"
@@ -18,7 +19,8 @@ const Card = ({ project }: { project: Project }) => {
     const theme = useMantineTheme();
     return (
         <div className=" p-3 shadow-md flex flex-col justify-between items-start relative hover:scale-105 transition-transform duration-200" style={{ height: 250, }}>
-            <div className="absolute inset-0 rounded-md brightness-50 bg-cover bg-center" style={{ backgroundImage: `url(${project.image})` }}></div>
+            {/* <div className="absolute inset-0 rounded-md brightness-50 bg-cover bg-center" style={{ backgroundImage: `url(${project.image})` }}></div> */}
+            <Image src={project.image} alt="project background" layout="fill" objectFit="cover" objectPosition="center" placeholder="blur" blurDataURL={`/_next/image?url=${project.image}&w=16&q=1`} />
             <div className="z-10 flex flex-col justify-between h-full">
                 <div>
                     <div className="flex items-center flex-wrap space-x-1">
