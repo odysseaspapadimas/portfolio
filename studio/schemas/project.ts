@@ -9,28 +9,33 @@ export default {
       type: "string",
     },
     {
+      name: "index",
+      title: "Index",
+      type: "number",
+    },
+    {
       name: "github",
       title: "Github",
       type: "url",
     },
     {
-        name: "link",
-        title: "Link",
-        type: "url",
+      name: "link",
+      title: "Link",
+      type: "url",
     },
     {
-        name: "image",
-        title: "Image",
-        type: "image",
+      name: "image",
+      title: "Image",
+      type: "image",
     },
     {
-        name: "categories",
-        title: "Categories",
-        type: "array",
-        of: [{type: "string"}],
-        options: {
-            layout: "tags",
-        },
-    }
+      name: "categories",
+      title: "Categories",
+      type: "array",
+      of: [{ type: "string" }],
+      options: {
+        layout: "tags",
+      },
+    },
   ],
 };

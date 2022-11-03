@@ -29,15 +29,19 @@ export default async function handler(
 
     console.log(type, slug);
 
-    await res.revalidate("/blog");
-    await res.revalidate(`/blog/${slug}`);
-    console.log(`Revalidated /post/${slug} with type ${type}`);
+    if (type === "post" && slug) {
+      await res.revalidate("/blog");
+      await res.revalidate(`/blog/${slug}`);
+      console.log(`Revalidated /post/${slug} with type ${type}`);
+    } else if (type === "project") {
+      await res.revalidate("/");
+    }
+
     return res.json({
       success: true,
       message: `Revalidated "${type}" with slug "${slug}"`,
     });
   } else {
-    
     console.error("Must be a POST request");
     return res
       .status(401)
