@@ -17,7 +17,7 @@ const About = () => {
                     <h1>Hi, I'm Odysseas 👋</h1>
                     <p className="">I'm a huge fan of Next.js and I love discovering and learning new technologies while working on fun and challenging projects.</p>
                     <br />
-                    <p>Outside of Web Development I love watching all sorts of TV Shows and <span className="relative">Anime.<img src="/straw-hat.png" alt="Luffy's straw hat" width={25} height={25} className="absolute top-0 -right-[14px] rotate-45" /> </span></p>
+                    <p>Outside of Web Development I love watching all sorts of TV Shows and <span className="relative">Anime.<img src="/straw-hat.webp" alt="Luffy's straw hat" width={25} height={25} className="absolute top-0 -right-[14px] rotate-45" /> </span></p>
                     <br />
                     <p>I also love learning new languages and I'm currently learning Spanish and Japanese.</p>
                 </div>
