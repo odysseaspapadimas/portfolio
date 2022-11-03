@@ -19,7 +19,7 @@ const postFields = `
 `;
 
 export const getAllProjects = async () => {
-  const data = await sanity.fetch(`*[_type == "project"]{${projectFields}}`);
+  const data = await sanity.fetch(`*[_type == "project"] | order(index asc) {${projectFields}}`);
   return data;
 };
 
