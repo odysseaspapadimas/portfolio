@@ -20,7 +20,7 @@ const Card = ({ project }: { project: Project }) => {
     return (
         <div className=" p-3 shadow-md flex flex-col justify-between items-start relative hover:scale-105 transition-transform duration-200" style={{ height: 250, }}>
             {/* <div className="absolute inset-0 rounded-md brightness-50 bg-cover bg-center" style={{ backgroundImage: `url(${project.image})` }}></div> */}
-            <Image src={project.image} alt="project background" layout="fill" objectFit="cover" objectPosition="center" placeholder="blur" blurDataURL={`/_next/image?url=${project.image}&w=16&q=1`} />
+            <Image src={project.image} alt="project background" layout="fill" objectFit="cover" objectPosition="center" placeholder="blur" blurDataURL={`/_next/image?url=${project.image}&w=16&q=1`} className="brightness-50" />
             <div className="z-10 flex flex-col justify-between h-full">
                 <div>
                     <div className="flex items-center flex-wrap space-x-1">
