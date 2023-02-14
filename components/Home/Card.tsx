@@ -16,7 +16,7 @@ className="h-[200px] flex flex-col justify-between items-start bg-cover bg-cente
 > */}
 
 const Card = ({ project }: { project: Project }) => {
-    const theme = useMantineTheme();
+
     return (
         <div className=" p-3 shadow-md flex flex-col justify-between items-start relative hover:scale-105 transition-transform duration-200" style={{ height: 250, }}>
             <Image src={project.image} alt="project background" layout="fill" objectFit="cover" objectPosition="center" placeholder="blur" blurDataURL={`/_next/image?url=${project.image}&w=16&q=1`} className="brightness-50" />
@@ -34,11 +34,11 @@ const Card = ({ project }: { project: Project }) => {
                     </h2>
                 </div>
                 <Group>
-                    <Button rightIcon={<IconBrandGithub size={18} />}>
-                        <a href={project.github} target="_blank" rel="noreferrer noopener">Github</a>
+                    <Button component="a" href={project.github} target="_blank" rel="noreferrer noopener" rightIcon={<IconBrandGithub size={18} />}>
+                        Github
                     </Button>
-                    <Button rightIcon={<IconWorldWww size={18} />}>
-                        <a href={project.link} target="_blank" rel="noreferrer noopener">Link</a>
+                    <Button component="a" href={project.link} target="_blank" rel="noreferrer noopener" rightIcon={<IconWorldWww size={18} />}>
+                        Link
                     </Button>
                 </Group>
             </div>
