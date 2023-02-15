@@ -11,7 +11,7 @@ const Hero = () => {
                 <h1 className="font-semibold">Odysseas Papadimas</h1>
                 <h2 className="font-medium text-xl">Full-stack Web Developer</h2>
 
-                <p>I'm currently experimenting with the <ExternalLink href="https://github.com/t3-oss/create-t3-app">T3 Stack</ExternalLink> and Next.js 13!</p>
+                <p>I'm currently working on my <ExternalLink href="https://thesis.odysseas.tech">Thesis</ExternalLink> and experimenting with the <ExternalLink href="https://github.com/t3-oss/create-t3-app">T3 Stack</ExternalLink> and Next.js 13!</p>
 
                 <Group className="self-center mt-4">
                     <SocialLink href="https://github.com/odysseaspapadimas" Icon={<IconBrandGithub size={42} />} />
