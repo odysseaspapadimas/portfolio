@@ -9,19 +9,38 @@
     "lint": "next lint"
   },
   "dependencies": {
-    "react": "^18",
-    "react-dom": "^18",
-    "next": "14.1.0"
+    "@payloadcms/db-postgres": "3.0.0-beta.73",
+    "@payloadcms/next": "3.0.0-beta.73",
+    "@payloadcms/plugin-cloud": "3.0.0-beta.73",
+    "@payloadcms/richtext-lexical": "3.0.0-beta.73",
+    "@radix-ui/react-icons": "^1.3.0",
+    "@radix-ui/react-slot": "^1.0.2",
+    "@react-three/drei": "^9.97.0",
+    "@react-three/fiber": "9.0.0-alpha.8",
+    "@tabler/icons-react": "^2.46.0",
+    "class-variance-authority": "^0.7.0",
+    "clsx": "^2.1.0",
+    "embla-carousel-react": "8.0.0-rc22",
+    "framer-motion": "^11.3.21",
+    "graphql": "^16.8.1",
+    "lucide-react": "^0.320.0",
+    "next": "15.0.0-canary.98",
+    "payload": "3.0.0-beta.73",
+    "react": "19.0.0-rc-8269d55d-20240802",
+    "react-dom": "19.0.0-rc-8269d55d-20240802",
+    "sharp": "^0.33.4",
+    "tailwind-merge": "^2.2.1",
+    "tailwindcss-animate": "^1.0.7"
   },
   "devDependencies": {
-    "typescript": "^5",
     "@types/node": "^20",
     "@types/react": "^18",
     "@types/react-dom": "^18",
     "autoprefixer": "^10.0.1",
+    "eslint": "^8",
+    "eslint-config-next": "14.1.0",
     "postcss": "^8",
     "tailwindcss": "^3.3.0",
-    "eslint": "^8",
-    "eslint-config-next": "14.1.0"
+    "typescript": "^5"
   }
 }
