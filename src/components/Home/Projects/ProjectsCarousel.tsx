@@ -1,6 +1,7 @@
 import {
   Carousel,
   CarouselContent,
+  CarouselDots,
   CarouselItem,
   CarouselNext,
   CarouselPrevious,
@@ -21,6 +22,7 @@ const ProjectsCarousel = ({ projects }: ProjectsCarouselProps) => {
       </CarouselContent>
       <CarouselPrevious />
       <CarouselNext />
+      <CarouselDots />
     </Carousel>
   );
 };

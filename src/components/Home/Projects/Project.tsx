@@ -10,7 +10,6 @@ type ProjectProps = {
 };
 
 const Project = ({ project }: ProjectProps) => {
-  console.log(project);
   const image = project.image as Media;
   return (
     <CarouselItem className="relative">
@@ -18,15 +17,10 @@ const Project = ({ project }: ProjectProps) => {
         className="p-6 shadow-md flex flex-col justify-between items-start relative hover:scale-[1.02] transition-transform duration-300 ease-in-out"
         style={{ height: 320, aspectRatio: 1920 / 920 }}
       >
-        <Image
+        <img
           src={image.url!}
           alt="project background"
-          layout="fill"
-          objectFit="cover"
-          objectPosition="center"
-          placeholder="blur"
-          blurDataURL={`/_next/image?url=${image}&w=16&q=1`}
-          className="brightness-50"
+          className="brightness-50 object-cover object-center w-full h-full absolute top-0 left-0 z-0"
         />
         <div className="z-10 flex flex-col justify-between h-full">
           <div>
