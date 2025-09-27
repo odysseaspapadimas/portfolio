@@ -73,7 +73,7 @@ export default async function ContactPage() {
               ? "Tell me about your business needs. I&apos;ll respond within 24 hours with a quick audit and next steps."
               : source === "founders"
               ? "Share your startup context. I&apos;ll reply with a technical assessment and partnership proposal."
-              : "Send me a message and I&apos;ll get back to you soon."}
+              : "Send me a message and I'll get back to you soon."}
           </p>
         </div>
       </section>
