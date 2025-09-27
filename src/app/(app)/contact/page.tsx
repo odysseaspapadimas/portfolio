@@ -70,9 +70,9 @@ export default async function ContactPage() {
           </h1>
           <p className="max-w-2xl text-base sm:text-lg text-muted-foreground">
             {source === "business"
-              ? "Tell me about your business needs. I&apos;ll respond within 24 hours with a quick audit and next steps."
+              ? "Tell me about your business needs. I'll respond within 24 hours with a quick audit and next steps."
               : source === "founders"
-              ? "Share your startup context. I&apos;ll reply with a technical assessment and partnership proposal."
+              ? "Share your startup context. I'll reply with a technical assessment and partnership proposal."
               : "Send me a message and I'll get back to you soon."}
           </p>
         </div>
@@ -141,7 +141,9 @@ export default async function ContactPage() {
       </section>
 
       <section className="space-y-4 rounded-3xl border border-border/60 bg-card/20 p-6 sm:p-8 backdrop-blur text-center">
-        <h2 className="text-lg sm:text-xl font-semibold">Prefer a call instead?</h2>
+        <h2 className="text-lg sm:text-xl font-semibold">
+          Prefer a call instead?
+        </h2>
         <p className="text-sm text-muted-foreground">
           Book a 20-minute intro call to discuss your project in detail.
         </p>
@@ -149,7 +151,10 @@ export default async function ContactPage() {
           href={site.calendly}
           target="_blank"
           rel="noreferrer"
-          className={cn(buttonVariants({ size: "lg" }), "gap-2 w-full sm:w-auto")}
+          className={cn(
+            buttonVariants({ size: "lg" }),
+            "gap-2 w-full sm:w-auto"
+          )}
         >
           Book intro call
         </Link>
