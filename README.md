@@ -1,36 +1,56 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# Portfolio — Odysseas Papadimas
+
+A streamlined consultant landing page built with Next.js 15 and Tailwind CSS. Content is file-based—no CMS, no auth. The homepage focuses on a flagship case study (Brainrot), two productized offers, and quick CTAs to book a call.
+
+## Highlights
+
+- ⚡ **Hero that sells**: Value proposition, availability, and Calendly CTA above the fold.
+- 📦 **Productized offers**: Audit & Roadmap and Sprint Build cards sourced from `content/site.ts`.
+- ⭐ **Flagship proof**: Brainrot case study excerpt rendered straight from MDX.
+- 🧪 **Starters gallery**: Small demo tiles pulled from `content/starters.ts`.
+- 🎯 **Frictionless booking**: Repeated Calendly CTA plus direct email link.
+
+## Content Architecture
+
+```
+content/
+├── site.ts                  # Offers, availability, socials, CTAs
+├── starters.ts              # Starter product tiles (name, links, Loom)
+└── case-studies/
+	└── brainrot.mdx         # Flagship case study in MDX
+```
+
+Update these files to change copy—no build steps or database migrations required.
 
 ## Getting Started
 
-First, run the development server:
-
 ```bash
-npm run dev
-# or
-yarn dev
-# or
+git clone <repository-url>
+cd portfolio
+pnpm install
 pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Open http://localhost:3000 to view the homepage.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+This project ships without required environment variables. If you later add analytics, forms, or other integrations, mirror them in `.env.local`.
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+## Scripts
 
-## Learn More
+- `pnpm dev` – Start the development server
+- `pnpm build` – Create a production build
+- `pnpm start` – Run the production server
+- `pnpm lint` – Run ESLint
 
-To learn more about Next.js, take a look at the following resources:
+## Tech Stack
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+- **Framework**: Next.js 15 (App Router)
+- **Styling**: Tailwind CSS
+- **Content**: MDX + TypeScript modules
+- **UI helpers**: shadcn/ui, lucide-react
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+## Next Steps
 
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+- Swap in real metrics for the Brainrot KPIs
+- Embed actual demo + Loom links for the starters
+- Wire up a simple contact form or CRM if needed

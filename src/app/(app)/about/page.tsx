@@ -1,130 +1,297 @@
-/* eslint-disable @next/next/no-img-element */
-/* eslint-disable react/no-unescaped-entities */
+import Image from "next/image";
+import Link from "next/link";
+import type { Metadata } from "next";
+
 import {
   Timeline,
   TimelineContent,
   TimelineDot,
   TimelineHeading,
-  TimelineItem,
+  TimelineItem as TimelineEntry,
   TimelineLine,
 } from "@/components/ui/timeline";
-import { IconMail, IconSquareCheck } from "@tabler/icons-react";
+import { buttonVariants } from "@/components/ui/button";
+import { about } from "@/content/about";
+import { experience } from "@/content/experience";
+import type { TimelineItem as ExperienceItem } from "@/content/experience";
+import { cn } from "@/lib/utils";
+import { Github, Linkedin, Mail } from "lucide-react";
 
-import Head from "next/head";
+const skills = [
+  {
+    label: "Product & Frontend",
+    items: ["Next.js", "React", "TypeScript", "Tailwind CSS", "shadcn/ui"],
+  },
+  {
+    label: "Backend & Data",
+    items: [
+      "Node.js",
+      "Laravel",
+      "Drizzle ORM",
+      "Postgres",
+      "Stripe integrations",
+    ],
+  },
+  {
+    label: "Infrastructure & Ops",
+    items: [
+      "Vercel",
+      "AWS",
+      "CI/CD pipelines",
+      "Observability dashboards",
+      "Auth reviews",
+    ],
+  },
+  {
+    label: "Collaboration",
+    items: ["Linear", "Notion", "Async Loom updates", "User interviews"],
+  },
+] as const;
 
-const About = () => {
-  return (
-    <>
-      <Head>
-        <title>About - Odysseas Papadimas</title>
-      </Head>
-      <div className="md:pt-8 pb-8">
-        <div>
-          <h2 className="text-2xl font-semibold">Hi, I'm Odysseas 👋</h2>
-          <p className="">
-            I'm a huge fan of Next.js and I love discovering and learning new
-            technologies while working on fun and challenging projects.
-          </p>
-          <br />
-          <p>
-            Outside of Web Development I love watching all sorts of TV Shows and{" "}
-            <span className="relative">
-              Anime.
-              <img
-                src="/straw-hat.webp"
-                alt="Luffy's straw hat"
-                width={25}
-                height={25}
-                className="absolute top-0 -right-[14px] rotate-45"
-              />{" "}
-            </span>
-          </p>
-          <br />
-          <p>
-            I also love learning new languages and I'm currently learning
-            Spanish and Japanese.
-          </p>
-        </div>
-
-        <div className="mt-8 flex flex-col md:flex-row justify-between md:space-x-8 space-y-8 md:space-y-0">
-          <div className="border border-slate-600 rounded-md p-6 flex-1">
-            <h2 className="text-2xl font-semibold">Skills</h2>
-            <div className="w-full h-[3px] bg-blue-500 mt-1"></div>
-            <div className="mt-4 grid grid-cols-3">
-              <p>Next.js</p>
-              <p>React Native</p>
-              <p>TypeScript</p>
-              <p>NextAuth</p>
-              <p>Tailwind</p>
-              <p>Mantine</p>
-              <p>Shadcn/ui</p>
-              <p>Prisma ORM</p>
-              <p>Drizzle</p>
-              <p>MySQL</p>
-              <p>PostgreSQL</p>
-              <p>Git</p>
-            </div>
-          </div>
-        </div>
-
-        <div className="border border-slate-600 rounded-md p-6 mt-8 flex-1">
-          <h2 className="text-2xl font-semibold">Contact</h2>
-          <div className="w-full h-[3px] bg-blue-500 mt-1"></div>
-
-          <div className="mt-4 flex items-center space-x-2">
-            <IconMail size={30} />
-            <a
-              className="text-base font-medium hover:text-primary"
-              href="mailto:odysseas.patra@gmail.com"
-            >
-              odysseas.papadimas9@gmail.com
-            </a>
-          </div>
-        </div>
-
-        <div className="mt-8">
-          <h2 className="text-2xl font-bold mb-2">Work Experience</h2>
-          <Timeline>
-            <TimelineItem status="default">
-              <TimelineHeading>
-                <span className="text-xl">Evline</span>{" "}
-                <span className="text-gray-300 text-base lowercase">
-                  - Front-end Developer {" "}
-                </span>
-                <span className="text-gray-400 text-sm">
-                  [ 15/12/2023 – Current ]
-                </span>
-              </TimelineHeading>
-              <TimelineDot status="custom" />
-              <TimelineLine done />
-              <TimelineContent>
-                • Developing web and mobile applications within team settings,
-                contributing to full project lifecycle. <br />• Adapted quickly
-                to take over ongoing projects from previous developers, ensuring
-                smooth transitions
-              </TimelineContent>
-            </TimelineItem>
-            <TimelineItem status="done">
-              <TimelineHeading>
-                <span className="text-xl">Pop2See</span>{" "}
-                <span className="text-gray-300 text-base lowercase">
-                  - Full-stack Developer {" "}
-                </span>
-                <span className="text-gray-400 text-sm">
-                  [ 12/06/2023 – Current ]
-                </span>
-              </TimelineHeading>
-              <TimelineDot status="custom" />
-              <TimelineContent>
-                A 6-month internship where I developed an AI web app to assist
-                blind and visually impaired individuals. I continue to volunteer
-                with Pop2See, contributing to their mission.
-              </TimelineContent>
-            </TimelineItem>
-          </Timeline>
-        </div>
-      </div>
-    </>
-  );
+export const metadata: Metadata = {
+  title: `About — ${about.name}`,
+  description: about.intro[0],
+  other: {
+    "application/ld+json": JSON.stringify({
+      "@context": "https://schema.org",
+      "@type": "Person",
+      "name": "Odysseas Papadimas",
+      "jobTitle": "Full-stack Engineer",
+      "url": "https://odysseas.tech",
+      "sameAs": [
+        "https://github.com/odysseaspapadimas",
+        "https://www.linkedin.com/in/odysseas-papadimas/"
+      ],
+      "knowsAbout": [
+        "Next.js", "React", "TypeScript", "Tailwind CSS", "shadcn/ui",
+        "Node.js", "Laravel", "Drizzle ORM", "Postgres", "Stripe integrations",
+        "Vercel", "AWS", "CI/CD pipelines", "Observability dashboards", "Auth reviews",
+        "Linear", "Notion", "Async Loom updates", "User interviews"
+      ],
+      "description": "Full-stack Engineer. I design, build, and ship production web apps and SaaS. I partner with founders and local businesses to launch features that move real metrics."
+    }),
+  },
 };
-export default About;
+
+export default function AboutPage() {
+  return (
+    <main className="mx-auto flex flex-col gap-16 py-16">
+      {/* Hero */}
+      <section className="space-y-6">
+        <div className="space-y-3">
+          <h1 className="text-4xl font-semibold md:text-5xl">
+            Hi, I&apos;m {about.name} 👋
+          </h1>
+          <p className="text-lg text-muted-foreground">{about.title}</p>
+          {about.intro.map((paragraph) => (
+            <p key={paragraph} className="max-w-2xl text-muted-foreground">
+              {paragraph}
+            </p>
+          ))}
+        </div>
+        <div className="flex flex-wrap items-center gap-3">
+          <Link
+            href={about.calendly}
+            target="_blank"
+            rel="noreferrer"
+            className={cn(buttonVariants({ size: "lg" }), "gap-2")}
+          >
+            Book intro
+          </Link>
+          <Link
+            href="/contact"
+            className={cn(
+              buttonVariants({ variant: "outline", size: "lg" }),
+              "gap-2"
+            )}
+          >
+            <Mail className="size-4" />
+            Email me
+          </Link>
+        </div>
+        <div className="flex flex-wrap gap-4 text-sm text-muted-foreground">
+          <Link
+            href={about.socials.github}
+            target="_blank"
+            rel="noreferrer"
+            className="inline-flex items-center gap-1 hover:text-foreground"
+          >
+            <Github className="size-4" /> GitHub
+          </Link>
+          <Link
+            href={about.socials.linkedin}
+            target="_blank"
+            rel="noreferrer"
+            className="inline-flex items-center gap-1 hover:text-foreground"
+          >
+            <Linkedin className="size-4" /> LinkedIn
+          </Link>
+        </div>
+      </section>
+
+      {/* Quick facts */}
+      <section>
+        <h2 className="text-2xl font-semibold">Quick facts</h2>
+        <div className="mt-4 grid gap-4 sm:grid-cols-3">
+          {about.quickFacts.map((fact) => (
+            <div
+              key={fact.label}
+              className="rounded-2xl border border-border/70 bg-card/30 p-4"
+            >
+              <div className="text-xs uppercase tracking-[0.28em] text-muted-foreground">
+                {fact.label}
+              </div>
+              <div className="mt-2 text-base text-foreground">{fact.value}</div>
+            </div>
+          ))}
+        </div>
+      </section>
+
+      {/* Experience */}
+      <section className="space-y-6">
+        <div className="space-y-2">
+          <h2 className="text-2xl font-semibold">Experience</h2>
+          <p className="text-sm text-muted-foreground">
+            Roles where I owned delivery across product, engineering, and
+            operations.
+          </p>
+        </div>
+        <Timeline className="gap-y-4">
+          {experience.map((item: ExperienceItem, index) => {
+            const isLast = index === experience.length - 1;
+            const isCurrent = index === 0;
+
+            return (
+              <TimelineEntry
+                key={`${item.org}-${item.role}`}
+                status={isCurrent ? "default" : "done"}
+              >
+                <TimelineHeading>
+                  <span className="text-lg font-semibold text-foreground">
+                    {item.org}
+                  </span>{" "}
+                  <span className="text-sm text-muted-foreground">
+                    — {item.role}
+                  </span>{" "}
+                  <span className="text-xs uppercase tracking-[0.2em] text-muted-foreground/70">
+                    [ {item.start} – {item.end} ]
+                  </span>
+                </TimelineHeading>
+                <TimelineDot status={isCurrent ? "current" : "done"} />
+                {!isLast && <TimelineLine done />}
+                <TimelineContent className="space-y-3 text-sm text-muted-foreground">
+                  <ul className="space-y-2">
+                    {item.bullets.map((bullet) => (
+                      <li key={bullet} className="leading-tight">
+                        {bullet}
+                      </li>
+                    ))}
+                  </ul>
+                  {item.stack && (
+                    <p className="text-xs uppercase tracking-[0.2em] text-muted-foreground/80">
+                      Stack: {item.stack.join(", ")}
+                    </p>
+                  )}
+                  {item.link && (
+                    <Link
+                      href={item.link}
+                      className="text-sm font-medium text-primary underline underline-offset-4"
+                    >
+                      Case study
+                    </Link>
+                  )}
+                </TimelineContent>
+              </TimelineEntry>
+            );
+          })}
+        </Timeline>
+      </section>
+
+      {/* Skills */}
+      <section className="space-y-4 rounded-3xl border border-border/60 bg-card/20 p-8 backdrop-blur">
+        <h2 className="text-2xl font-semibold">Skills</h2>
+        <div className="grid gap-6 md:grid-cols-2">
+          {skills.map((group) => (
+            <div key={group.label} className="space-y-2">
+              <h3 className="text-sm font-semibold uppercase tracking-[0.2em] text-muted-foreground">
+                {group.label}
+              </h3>
+              <ul className="flex flex-wrap gap-2 text-sm text-muted-foreground">
+                {group.items.map((item) => (
+                  <li
+                    key={item}
+                    className="rounded-full border border-border/60 px-3 py-1"
+                  >
+                    {item}
+                  </li>
+                ))}
+              </ul>
+            </div>
+          ))}
+        </div>
+      </section>
+
+      {/* Case study highlight */}
+      <section className="space-y-4 rounded-3xl border border-primary/40 bg-primary/10 p-8">
+        <div className="space-y-2">
+          <h2 className="text-xl font-semibold text-foreground">BrainrotAI</h2>
+          <p className="text-sm text-muted-foreground">
+            AI video generator used by 2,200+ creators and #11 Product of the
+            Day on Product Hunt. Built end-to-end: auth, billing, rendering
+            pipeline, admin, analytics.
+          </p>
+        </div>
+        <div className="flex flex-wrap gap-3">
+          <Link
+            href="/case-studies/brainrot"
+            className={cn(buttonVariants({ size: "sm" }), "gap-1")}
+          >
+            Read case study
+          </Link>
+          <Link
+            href={about.calendly}
+            target="_blank"
+            rel="noreferrer"
+            className={cn(
+              buttonVariants({ variant: "outline", size: "sm" }),
+              "gap-1"
+            )}
+          >
+            Book 20′ intro
+          </Link>
+        </div>
+      </section>
+
+      {/* Contact */}
+      <section className="space-y-4 rounded-3xl border border-border/60 bg-card/20 p-8 backdrop-blur">
+        <h2 className="text-2xl font-semibold">
+          Let&apos;s build your next release
+        </h2>
+        <p className="text-sm text-muted-foreground">
+          Share context and I&apos;ll reply with a short audit, starter plan,
+          and a time to connect.
+        </p>
+        <div className="flex flex-wrap gap-3">
+          <Link
+            href={about.calendly}
+            target="_blank"
+            rel="noreferrer"
+            className={cn(buttonVariants({ size: "lg" }), "gap-2")}
+          >
+            Book intro
+          </Link>
+          <Link
+            href="/contact"
+            className={cn(
+              buttonVariants({ variant: "outline", size: "lg" }),
+              "gap-2"
+            )}
+          >
+            <Mail className="size-4" />
+            Email me
+          </Link>
+        </div>
+      </section>
+    </main>
+  );
+}

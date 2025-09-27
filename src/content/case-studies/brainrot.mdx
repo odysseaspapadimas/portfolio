@@ -1,0 +1,192 @@
+export const meta = {
+  title: "BrainrotAI — AI Video Generator (Case Study)",
+  summary:
+    "A well-rounded, production SaaS: acquisition → activation → retention → revenue. Used by 2,200+ creators; ranked #11 Product of the Day on Product Hunt.",
+  tags: [
+    "SaaS",
+    "AI",
+    "Video",
+    "Next.js",
+    "TypeScript",
+    "Drizzle",
+    "Postgres",
+    "Stripe",
+    "Vercel",
+  ],
+  hero: {
+    image: "https://brainrotai.s3.eu-central-1.amazonaws.com/landing.png",
+    caption: "Generate punchy, captioned videos for social in minutes.",
+  },
+  links: {
+    site: "https://www.brainrotai.app",
+    producthunt: "https://www.producthunt.com/products/brainrotai",
+    producthunt_launch:
+      "https://www.producthunt.com/products/brainrotai/launches/brainrotai",
+    demo_loom:
+      "https://www.loom.com/share/bf517e1d3a55462c845ec77479f551c9?sid=339bfcf9-208d-42e2-905b-6d9207049b7e",
+  },
+};
+
+import Link from "next/link";
+
+# BrainrotAI
+
+**AI video generator used by _2,200+ creators_.**  
+Launched on Product Hunt and ranked **#11 Product of the Day**.
+
+<small>
+<Link href="https://www.producthunt.com/products/brainrotai" target="_blank"
+	rel="noreferrer">Product page</Link> •
+<Link href="https://www.producthunt.com/products/brainrotai/launches/brainrotai" target="_blank"
+	rel="noreferrer">Launch page</Link> •
+<Link
+	href="https://www.loom.com/share/bf517e1d3a55462c845ec77479f551c9?sid=339bfcf9-208d-42e2-905b-6d9207049b7e"
+	target="_blank"
+	rel="noreferrer"
+>Watch the walkthrough</Link>
+
+</small>
+
+---
+
+## TL;DR (Snapshot)
+
+- **What it is:** SaaS that turns raw clips into short, captioned videos with high-contrast “brainrot” subtitles and smart layouts for TikTok/Reels/Shorts.
+- **Who it’s for:** Creators, marketers, and solo founders who need thumb-stopping clips _fast_.
+- **Proof:** **2.2k+ users**, **#11 Product of the Day** on Product Hunt.
+- **Surface area:** onboarding, editor, rendering pipeline, exports, billing, admin tooling, analytics, email.
+- **My role:** End-to-end design & engineering (product, backend, frontend, ops, release).
+
+---
+
+## Highlights
+
+- **Acquisition:** PH launch, SEO-ready landing, Google & TikTok OAuth via NextAuth, automated welcome credits + email.
+- **Activation:** Multi-step studio with live Remotion preview, credit estimator, template library; first export designed to ship in **\<5 minutes** end-to-end (ElevenLabs + Remotion Lambda).
+- **Retention:** Saved projects in a searchable library, rename/download/share flows, S3 migration helper, default subtitle presets, lifecycle emails through Resend.
+- **Revenue:** Stripe Checkout credit packs (1000 credits ≈ 1 min of narration), coupon support, webhook-driven ledger in Postgres, Discord alerts for every purchase.
+- **Operations:** Vercel CI/CD, PostHog product analytics, Sentry errors + session replay, Discord ops hooks, self-serve admin email campaigns.
+
+> **Positioning:** Not just a demo—**a complete product** with auth, billing, storage, admin, analytics, and support loops.
+
+---
+
+## Product Surface
+
+### Acquisition
+
+- Product Hunt launch with teaser video, founder-led comments, and early testimonials.
+- Landing page built as a Next.js App Router view with async data (demo video pulled from S3) and copy tuned for “before/after” storytelling.
+- Signup is one click with Google or TikTok providers; welcome flow awards starter credits and sends a Resend welcome email + Discord notification.
+
+### Activation
+
+- Five-step studio (video source → voice → script → subtitles → review) backed by React Hook Form + Zod; local storage resume if the tab closes.
+- Template gallery pulls from S3 so a new user can export without uploading.
+- Subtitle step renders a live Remotion player with timing inferred from the script; highlight color updates debounce to keep the preview smooth.
+- Credit estimator (1000 credits/min) checks balance server-side before calling ElevenLabs + Remotion, then polls Lambda every 3s with optimistic progress UI.
+
+### Retention
+
+- Library table (TanStack Table + Framer Motion) shows status, estimated/actual credits, rename, preview, download, and delete actions per video.
+- Resend + React Email templates for welcome, feature updates, and nudges; admin UI can send staged campaigns or production blasts.
+- Middleware (`/library`, `/account`, `/admin`) ensures authenticated access, while admin routes stay behind an allow-list.
+
+### Revenue
+
+- Stripe Checkout in payment mode sells credit packs; product metadata drives how many credits are minted on webhook success.
+- Webhooks reconcile payments, persist invoices, and update user balances in Drizzle.
+- Discord notification firehose for new purchases keeps ops aware in real time.
+- Pricing page fetches live Stripe product data; “Purchase” CTA reroutes to Checkout or login depending on auth state.
+
+---
+
+## Architecture (Overview)
+
+> **Stack:** Next.js 14 (App Router, RSC) • TypeScript • Zod • Drizzle ORM on Neon Postgres • AWS S3 + Remotion Lambda • ElevenLabs TTS • Stripe Checkout/Webhooks • Resend • PostHog • Sentry • Discord webhooks.
+
+- **App**
+
+  - Server Actions orchestrated with React Server Components for fast reads.
+  - Protected routing for studio, library, account, and admin areas.
+  - Client UX built with Radix primitives, Tailwind, Framer Motion animations, and Remotion Player embeds.
+
+- **Data**
+
+  - Neon Postgres holds users, videos (status/credits/errors), payments, invoices, support requests.
+  - Drizzle migrations versioned alongside schema; Neon HTTP adapter keeps cold starts low.
+
+- **Media & Processing**
+
+  - Client uploads use presigned cloud URLs; templates live in a dedicated cloud area.
+  - ElevenLabs API returns audio + per-word timing to build captions.
+  - Remotion Lambda renders video compositions with webhook callbacks; status polling + webhook both update video state.
+  - Outputs stored back in cloud storage, signed at view/download time.
+
+- **Billing**
+
+  - Stripe Checkout session uses payment mode with promotion codes, attaches or creates customers, and records every payment + invoice row.
+  - Credit debits happen inside the render webhook to guarantee idempotent charging once the render succeeds.
+
+- **Observability & Ops**
+  - Sentry (browser + server) with Replay for repros; user tied to session in the auth event.
+  - PostHog client in production-only provider; Vercel Speed Insights for performance.
+  - Real-time notifications for signup/purchase; admin email console for campaigns.
+
+---
+
+## Security & Privacy
+
+- OAuth (Google, TikTok) via NextAuth with httpOnly session cookies; protected routes enforced via middleware.
+- Admin console restricted to a short allow-list; server actions double-check ownership.
+- Render webhooks validated with HMAC signatures; Stripe signatures verified via official SDK.
+- All media access goes through presigned cloud URLs; uploads scoped per user.
+- Secrets stay in env vars; database stores minimal PII (name, email, credits).
+
+---
+
+## Launch & Growth
+
+- Product Hunt launch (#11 Product of the Day) pulled in the first wave of creators.
+- Organic discovery through short-form demos, targeted X/Twitter clips, and community shoutouts.
+- Automated lifecycle emails (“first export ready”, “credits running low”) nurture retention; Discord keeps the team looped on every signup/purchase.
+
+> Embedded badge and launch recap available on the
+>
+> <Link href="https://www.producthunt.com/products/brainrotai">
+>   Product Hunt product page
+> </Link>
+> .
+
+---
+
+## Screens & Demo
+
+![Brainrot landing](https://brainrotai.s3.eu-central-1.amazonaws.com/landing.png)  
+_Conversion-focused landing page with live demo preview._
+
+![Brainrot library](https://brainrotai.s3.eu-central-1.amazonaws.com/library.png)  
+_Recent projects with quick actions and credit readouts._
+
+---
+
+## My Role
+
+- **Product & UX:** crafted flows, copy, presets, activation experiments.
+- **Backend & Infra:** schema design, API orchestration, payment webhooks, credit system.
+- **Frontend:** studio UI, animation polish, admin tooling, responsive layout, accessibility passes.
+- **Ops:** release pipeline, incident response, support workflows, documentation.
+
+---
+
+## Tech Notes (for fellow engineers)
+
+```txt
+Next.js 14 (App Router, RSC, Server Actions)
+TypeScript, Zod, React Hook Form, Radix UI, Tailwind + Framer Motion
+Drizzle ORM on Neon Postgres
+Stripe Checkout + Webhooks (credit packs)
+AWS S3 + Remotion Lambda (video renders) + ElevenLabs (voice + timings)
+Email automation, PostHog (product analytics), Sentry (errors + replay)
+Real-time notifications for ops alerts, Vercel Speed Insights for performance
+```

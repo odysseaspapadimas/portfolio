@@ -1,5 +1,12 @@
-import { withPayload } from "@payloadcms/next/withPayload";
-/** @type {import('next').NextConfig} */
-const nextConfig = {};
+import createMDX from "@next/mdx";
 
-export default withPayload(nextConfig);
+const withMDX = createMDX({
+	extension: /\.mdx?$/,
+});
+
+/** @type {import('next').NextConfig} */
+const nextConfig = {
+	pageExtensions: ["ts", "tsx", "js", "jsx", "md", "mdx"],
+};
+
+export default withMDX(nextConfig);
