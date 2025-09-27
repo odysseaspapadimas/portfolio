@@ -11,21 +11,21 @@ export const metadata = {
 
 export default function Home() {
   return (
-    <main className="mx-auto flex flex-col gap-16 py-20">
-      <section className="space-y-6 text-balance">
-        <p className="text-sm uppercase tracking-[0.3em] text-muted-foreground">
+    <main className="mx-auto flex flex-col gap-12 sm:gap-16 lg:gap-20 py-12 sm:py-16 lg:py-20">
+      <section className="space-y-4 sm:space-y-6 text-balance">
+        <p className="text-xs sm:text-sm uppercase tracking-[0.3em] text-muted-foreground">
           {site.title}
         </p>
-        <h1 className="text-4xl font-semibold leading-tight md:text-5xl">
+        <h1 className="text-3xl sm:text-4xl lg:text-5xl font-semibold leading-tight">
           Digital systems that bring customers.
         </h1>
-        <p className="max-w-2xl text-lg text-muted-foreground">
+        <p className="max-w-2xl text-base sm:text-lg text-muted-foreground">
           Start with the path that fits you. If you run a business and need
           bookings, payments, and automations, I build the full stack. If
           you&apos;re a founder scaling SaaS, I ship the architecture and
           product layers with you.
         </p>
-        <div className="flex flex-wrap gap-3">
+        <div className="flex flex-col sm:flex-row flex-wrap gap-3 pt-2">
           <Link
             href="/business"
             className={cn(buttonVariants({ size: "lg" }), "gap-2")}

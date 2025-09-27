@@ -59,16 +59,16 @@ export default async function ContactPage() {
     : "direct";
 
   return (
-    <main className="mx-auto flex max-w-5xl flex-col gap-16 px-6 py-20">
-      <section className="space-y-6 text-balance">
-        <div className="space-y-4">
-          <p className="text-sm uppercase tracking-[0.3em] text-muted-foreground">
+    <main className="mx-auto flex max-w-5xl flex-col gap-12 sm:gap-16 px-4 sm:px-6">
+      <section className="space-y-4 sm:space-y-6 text-balance py-12 sm:py-16 lg:py-20">
+        <div className="space-y-3 sm:space-y-4">
+          <p className="text-xs sm:text-sm uppercase tracking-[0.3em] text-muted-foreground">
             Get in touch
           </p>
-          <h1 className="text-4xl font-semibold leading-tight md:text-5xl">
+          <h1 className="text-3xl sm:text-4xl lg:text-5xl font-semibold leading-tight">
             Let&apos;s discuss your project
           </h1>
-          <p className="max-w-2xl text-lg text-muted-foreground">
+          <p className="max-w-2xl text-base sm:text-lg text-muted-foreground">
             {source === "business"
               ? "Tell me about your business needs. I&apos;ll respond within 24 hours with a quick audit and next steps."
               : source === "founders"
@@ -78,11 +78,11 @@ export default async function ContactPage() {
         </div>
       </section>
 
-      <section className="space-y-6">
-        <form action={sendContact} className="space-y-6">
+      <section className="space-y-6 sm:space-y-8">
+        <form action={sendContact} className="space-y-4 sm:space-y-6">
           <input type="hidden" name="source" value={source} />
 
-          <div className="grid gap-4 md:grid-cols-2">
+          <div className="grid gap-4 sm:grid-cols-2">
             <div className="space-y-2">
               <label htmlFor="name" className="text-sm font-medium">
                 Name *
@@ -133,15 +133,15 @@ export default async function ContactPage() {
 
           <button
             type="submit"
-            className={cn(buttonVariants({ size: "lg" }), "w-full md:w-auto")}
+            className={cn(buttonVariants({ size: "lg" }), "w-full sm:w-auto")}
           >
             Send message
           </button>
         </form>
       </section>
 
-      <section className="space-y-4 rounded-3xl border border-border/60 bg-card/20 p-8 backdrop-blur text-center">
-        <h2 className="text-xl font-semibold">Prefer a call instead?</h2>
+      <section className="space-y-4 rounded-3xl border border-border/60 bg-card/20 p-6 sm:p-8 backdrop-blur text-center">
+        <h2 className="text-lg sm:text-xl font-semibold">Prefer a call instead?</h2>
         <p className="text-sm text-muted-foreground">
           Book a 20-minute intro call to discuss your project in detail.
         </p>
@@ -149,7 +149,7 @@ export default async function ContactPage() {
           href={site.calendly}
           target="_blank"
           rel="noreferrer"
-          className={cn(buttonVariants({ size: "lg" }), "gap-2")}
+          className={cn(buttonVariants({ size: "lg" }), "gap-2 w-full sm:w-auto")}
         >
           Book intro call
         </Link>

@@ -81,50 +81,50 @@ const processSteps = [
 
 export default function BusinessPage() {
   return (
-    <main className="mx-auto flex flex-col gap-20 py-20">
-      <section className="space-y-8 text-balance">
-        <div className="space-y-4">
-          <p className="text-sm uppercase tracking-[0.3em] text-muted-foreground">
+    <main className="mx-auto flex flex-col gap-12 sm:gap-16 lg:gap-20 py-12 sm:py-16 lg:py-20">
+      <section className="space-y-6 sm:space-y-8 text-balance">
+        <div className="space-y-3 sm:space-y-4">
+          <p className="text-xs sm:text-sm uppercase tracking-[0.3em] text-muted-foreground">
             Υπηρεσίες για επιχειρήσεις
           </p>
-          <h1 className="text-4xl font-semibold leading-tight md:text-5xl">
+          <h1 className="text-3xl sm:text-4xl lg:text-5xl font-semibold leading-tight">
             Στήνω ψηφιακά συστήματα που φέρνουν πελάτες.
           </h1>
-          <p className="max-w-2xl text-lg text-muted-foreground">
+          <p className="max-w-2xl text-base sm:text-lg text-muted-foreground">
             Ιστοσελίδες, κρατήσεις και αυτοματισμοί για μικρές επιχειρήσεις που θέλουν να
             κλείνουν ραντεβού και πωλήσεις χωρίς χαμένο χρόνο. Χτίζονται με σύγχρονα εργαλεία
             και παραδίδονται με ξεκάθαρα βήματα, τεκμηριωμένα στα ελληνικά.
           </p>
-          <p className="max-w-2xl text-lg text-muted-foreground">
+          <p className="max-w-2xl text-base sm:text-lg text-muted-foreground">
             Σχεδιάζω έτοιμες για μετατροπές landing pages, ροές κρατήσεων και συστήματα
             πληρωμών ώστε η ομάδα σου να εστιάζει στους πελάτες — όχι σε χειροκίνητες
             επανενέργειες.
           </p>
-          <div className="flex flex-wrap gap-3">
+          <div className="flex flex-col sm:flex-row flex-wrap gap-3 pt-2">
             <Link
               href={site.calendly}
               target="_blank"
               rel="noreferrer"
-              className={cn(buttonVariants({ size: "lg" }), "gap-2")}
+              className={cn(buttonVariants({ size: "lg" }), "gap-2 w-full sm:w-auto")}
             >
               Κλείσε ραντεβού
             </Link>
             <Link
               href="/contact"
-              className={cn(buttonVariants({ variant: "outline", size: "lg" }), "gap-2")}
+              className={cn(buttonVariants({ variant: "outline", size: "lg" }), "gap-2 w-full sm:w-auto")}
             >
               Στείλε μου τις ανάγκες σου
             </Link>
           </div>
         </div>
 
-        <div className="grid gap-4 md:grid-cols-3">
+        <div className="grid gap-4 sm:gap-6 sm:grid-cols-2 lg:grid-cols-3">
           {businessCapabilities.map((item) => (
             <article
               key={item.label}
-              className="space-y-2 rounded-2xl border border-border/60 bg-card/30 p-5 text-sm text-muted-foreground"
+              className="space-y-2 rounded-2xl border border-border/60 bg-card/30 p-4 sm:p-5 text-sm text-muted-foreground"
             >
-              <h2 className="text-base font-semibold text-foreground">{item.label}</h2>
+              <h2 className="text-sm sm:text-base font-semibold text-foreground">{item.label}</h2>
               <p>{item.description}</p>
             </article>
           ))}
@@ -206,13 +206,13 @@ export default function BusinessPage() {
             Διαδικασία που μιλάει τόσο τη γλώσσα της επιχείρησης όσο και της τεχνολογίας.
           </p>
         </div>
-        <div className="grid gap-4 md:grid-cols-3">
+        <div className="grid gap-4 sm:gap-6 sm:grid-cols-2 lg:grid-cols-3">
           {processSteps.map((step) => (
             <article
               key={step.title}
-              className="space-y-3 rounded-2xl border border-border/60 bg-card/20 p-6 text-sm text-muted-foreground"
+              className="space-y-3 rounded-2xl border border-border/60 bg-card/20 p-4 sm:p-6 text-sm text-muted-foreground"
             >
-              <h3 className="text-base font-semibold text-foreground">{step.title}</h3>
+              <h3 className="text-sm sm:text-base font-semibold text-foreground">{step.title}</h3>
               <p>{step.detailEL}</p>
               <p className="text-muted-foreground/80">{step.detailEN}</p>
             </article>
