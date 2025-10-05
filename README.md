@@ -1,56 +1,113 @@
-# Portfolio — Odysseas Papadimas
+# tanstack-portfolio
 
-A streamlined consultant landing page built with Next.js 15 and Tailwind CSS. Content is file-based—no CMS, no auth. The homepage focuses on a flagship case study (Brainrot), two productized offers, and quick CTAs to book a call.
+Personal portfolio built with TanStack Router, Vite, React and Tailwind. Optimized for showcasing services for Greek businesses and founders.
 
-## Highlights
+This repo is set up for local development, Cloudflare deployment (Workers / Pages), and content-first editing via `src/content/*.ts`.
 
-- ⚡ **Hero that sells**: Value proposition, availability, and Calendly CTA above the fold.
-- 📦 **Productized offers**: Audit & Roadmap and Sprint Build cards sourced from `content/site.ts`.
-- ⭐ **Flagship proof**: Brainrot case study excerpt rendered straight from MDX.
-- 🧪 **Starters gallery**: Small demo tiles pulled from `content/starters.ts`.
-- 🎯 **Frictionless booking**: Repeated Calendly CTA plus direct email link.
+## Quick start
 
-## Content Architecture
-
-```
-content/
-├── site.ts                  # Offers, availability, socials, CTAs
-├── starters.ts              # Starter product tiles (name, links, Loom)
-└── case-studies/
-	└── brainrot.mdx         # Flagship case study in MDX
-```
-
-Update these files to change copy—no build steps or database migrations required.
-
-## Getting Started
+Install dependencies and run the dev server:
 
 ```bash
-git clone <repository-url>
-cd portfolio
 pnpm install
 pnpm dev
 ```
 
-Open http://localhost:3000 to view the homepage.
+Open http://localhost:3000
 
-This project ships without required environment variables. If you later add analytics, forms, or other integrations, mirror them in `.env.local`.
+Scripts available (see `package.json`):
 
-## Scripts
+- `pnpm dev` — start Vite dev server (port 3000)
+- `pnpm start` — start Vite in non-dev mode
+- `pnpm build` — build for production
+- `pnpm serve` — preview the built site locally
+- `pnpm test` — run unit tests (Vitest)
+- `pnpm deploy` — wrangler deploy (Cloudflare)
+- `pnpm deploy:build` — build then deploy
 
-- `pnpm dev` – Start the development server
-- `pnpm build` – Create a production build
-- `pnpm start` – Run the production server
-- `pnpm lint` – Run ESLint
+## Project structure (important folders)
 
-## Tech Stack
+- `src/routes/` — file-based routes (page components)
+- `src/content/` — canonical copy for pages (edit content here)
+- `src/components/` — shared UI components (buttons, page container, etc.)
+- `public/` — static assets (icons, images)
 
-- **Framework**: Next.js 15 (App Router)
-- **Styling**: Tailwind CSS
-- **Content**: MDX + TypeScript modules
-- **UI helpers**: shadcn/ui, lucide-react
+## Editing content
 
-## Next Steps
+All page copy originates from `src/content/*.ts` (for example `src/content/business.ts`, `src/content/founders.ts`, `src/content/home.ts`).
 
-- Swap in real metrics for the Brainrot KPIs
-- Embed actual demo + Loom links for the starters
-- Wire up a simple contact form or CRM if needed
+Edit those files to change headings, paragraphs, CTAs and any structured content. Routes import and render content from these files — you usually don't need to edit the route components unless you're changing layout or markup.
+
+Tip: keep content objects simple and use `as const` to preserve types where appropriate.
+
+## Deployment
+
+This project is configured for Cloudflare (Workers / Pages). There are two common options:
+
+### Cloudflare Pages (static hosting)
+
+1. Build the app locally:
+
+```bash
+pnpm build
+```
+
+2. Create a Cloudflare Pages site and set:
+
+- Build command: `pnpm build`
+- Build output directory: `dist` (or your Vite output)
+
+Connect your repo and enable automatic deployments from your main branch.
+
+### Cloudflare Workers / Wrangler
+
+This repo includes Wrangler in devDependencies. Use Wrangler if you need an edge runtime or API routes.
+
+Install Wrangler (global optional):
+
+```bash
+pnpm add -g wrangler
+# or: npm i -g wrangler
+```
+
+Build & deploy example:
+
+```bash
+pnpm build
+wrangler publish --env production
+```
+
+If you want, I can add a minimal `wrangler.toml` and a small Worker entry point to make the publish step one-command.
+
+## Routing and content notes
+
+- Routes are file-based in `src/routes`. Use `Link` from `@tanstack/react-router` for client navigation.
+- Keep copy in `src/content` so translations, copy edits, and A/B variants are centralized.
+
+## Tests
+
+Run unit tests with:
+
+```bash
+pnpm test
+```
+
+## Development tips
+
+- Tailwind: tweak `tailwind.config.js` and the global stylesheet at `src/styles.css`.
+- Add shadcn components with `pnpx shadcn@latest add <component>`.
+- Use the `home`, `business`, and `founders` content files as examples for how to structure new page content.
+
+## Want me to add deployment scaffolding?
+
+I can add:
+
+- `wrangler.toml` + worker entrypoint for a one-command `wrangler publish`
+- GitHub Actions workflow to build and publish to Cloudflare Pages automatically
+- A `docs/` page explaining content structure and copy best-practices
+
+Tell me which you'd like and I'll add it.
+
+---
+
+Made for fast iteration and clear content editing. Keep content in `src/content` and the UI will follow.

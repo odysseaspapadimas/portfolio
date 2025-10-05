@@ -10,14 +10,40 @@ export const about = {
     { label: "Experience", value: "4+ years" },
     { label: "Work mode", value: "Product sprints, clear handovers" },
   ],
-  email: "odysseas.papadimas9@gmail.com",
+  skills: [
+    {
+      label: "Product & Frontend",
+      items: ["Next.js", "React", "TypeScript", "Tailwind CSS", "shadcn/ui"],
+    },
+    {
+      label: "Backend & Data",
+      items: [
+        "Node.js",
+        "Laravel",
+        "Drizzle ORM",
+        "Postgres",
+        "Stripe integrations",
+      ],
+    },
+    {
+      label: "Infrastructure & Ops",
+      items: [
+        "Cloudflare",
+        "AWS",
+        "CI/CD pipelines",
+        "Observability dashboards",
+        "Auth reviews",
+      ],
+    },
+    {
+      label: "Collaboration",
+      items: ["Linear", "Notion", "Async Loom updates", "User interviews"],
+    },
+  ],
   calendly: "https://calendly.com/odysseas-papadimas9/intro",
   socials: {
     github: "https://github.com/odysseaspapadimas",
     linkedin: "https://www.linkedin.com/in/odysseas-papadimas/",
   },
-  fun: {
-    text: "Outside of coding I binge great TV, read manga/anime, and learn languages (Spanish & Japanese).",
-    strawHatImg: "/straw-hat.webp",
-  },
 } as const;
+

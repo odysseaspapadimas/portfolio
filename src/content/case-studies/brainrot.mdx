@@ -27,32 +27,23 @@ export const meta = {
   },
 };
 
-import Link from "next/link";
-
 # BrainrotAI
 
 **AI video generator used by _2,200+ creators_.**  
 Launched on Product Hunt and ranked **#11 Product of the Day**.
 
 <small>
-<Link href="https://www.producthunt.com/products/brainrotai" target="_blank"
-	rel="noreferrer">Product page</Link> •
-<Link href="https://www.producthunt.com/products/brainrotai/launches/brainrotai" target="_blank"
-	rel="noreferrer">Launch page</Link> •
-<Link
-	href="https://www.loom.com/share/bf517e1d3a55462c845ec77479f551c9?sid=339bfcf9-208d-42e2-905b-6d9207049b7e"
-	target="_blank"
-	rel="noreferrer"
->Watch the walkthrough</Link>
-
+[Product page](https://www.producthunt.com/products/brainrotai) •
+[Launch page](https://www.producthunt.com/products/brainrotai/launches/brainrotai) •
+[Watch the walkthrough](https://www.loom.com/share/bf517e1d3a55462c845ec77479f551c9?sid=339bfcf9-208d-42e2-905b-6d9207049b7e)
 </small>
 
 ---
 
 ## TL;DR (Snapshot)
 
-- **What it is:** SaaS that turns raw clips into short, captioned videos with high-contrast “brainrot” subtitles and smart layouts for TikTok/Reels/Shorts.
-- **Who it’s for:** Creators, marketers, and solo founders who need thumb-stopping clips _fast_.
+- **What it is:** SaaS that turns raw clips into short, captioned videos with high-contrast "brainrot" subtitles and smart layouts for TikTok/Reels/Shorts.
+- **Who it's for:** Creators, marketers, and solo founders who need thumb-stopping clips _fast_.
 - **Proof:** **2.2k+ users**, **#11 Product of the Day** on Product Hunt.
 - **Surface area:** onboarding, editor, rendering pipeline, exports, billing, admin tooling, analytics, email.
 - **My role:** End-to-end design & engineering (product, backend, frontend, ops, release).
@@ -76,7 +67,7 @@ Launched on Product Hunt and ranked **#11 Product of the Day**.
 ### Acquisition
 
 - Product Hunt launch with teaser video, founder-led comments, and early testimonials.
-- Landing page built as a Next.js App Router view with async data (demo video pulled from S3) and copy tuned for “before/after” storytelling.
+- Landing page built as a Next.js App Router view with async data (demo video pulled from S3) and copy tuned for "before/after" storytelling.
 - Signup is one click with Google or TikTok providers; welcome flow awards starter credits and sends a Resend welcome email + Discord notification.
 
 ### Activation
@@ -97,7 +88,7 @@ Launched on Product Hunt and ranked **#11 Product of the Day**.
 - Stripe Checkout in payment mode sells credit packs; product metadata drives how many credits are minted on webhook success.
 - Webhooks reconcile payments, persist invoices, and update user balances in Drizzle.
 - Discord notification firehose for new purchases keeps ops aware in real time.
-- Pricing page fetches live Stripe product data; “Purchase” CTA reroutes to Checkout or login depending on auth state.
+- Pricing page fetches live Stripe product data; "Purchase" CTA reroutes to Checkout or login depending on auth state.
 
 ---
 
@@ -149,14 +140,9 @@ Launched on Product Hunt and ranked **#11 Product of the Day**.
 
 - Product Hunt launch (#11 Product of the Day) pulled in the first wave of creators.
 - Organic discovery through short-form demos, targeted X/Twitter clips, and community shoutouts.
-- Automated lifecycle emails (“first export ready”, “credits running low”) nurture retention; Discord keeps the team looped on every signup/purchase.
+- Automated lifecycle emails ("first export ready", "credits running low") nurture retention; Discord keeps the team looped on every signup/purchase.
 
-> Embedded badge and launch recap available on the
->
-> <Link href="https://www.producthunt.com/products/brainrotai">
->   Product Hunt product page
-> </Link>
-> .
+> Embedded badge and launch recap available on the [Product Hunt product page](https://www.producthunt.com/products/brainrotai).
 
 ---
 
@@ -190,3 +176,4 @@ AWS S3 + Remotion Lambda (video renders) + ElevenLabs (voice + timings)
 Email automation, PostHog (product analytics), Sentry (errors + replay)
 Real-time notifications for ops alerts, Vercel Speed Insights for performance
 ```
+
