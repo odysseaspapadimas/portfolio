@@ -1,5 +1,5 @@
 import React from "react";
-import { CheckIcon, CircleIcon, Cross1Icon } from "@radix-ui/react-icons";
+import { CheckIcon, Cross1Icon } from "@radix-ui/react-icons";
 import { VariantProps, cva } from "class-variance-authority";
 
 import { cn } from "@/lib/utils";
@@ -137,7 +137,7 @@ const TimelineContent = React.forwardRef<HTMLDivElement, TimelineConentProps>(
 TimelineContent.displayName = "TimelineContent";
 
 const timelineHeadingVariants = cva(
-  "row-start-1 row-end-1 line-clamp-1 max-w-full truncate",
+  "row-start-1 row-end-1 max-w-full md:line-clamp-1 md:truncate leading-0! mb-1.5",
   {
     variants: {
       side: {
@@ -205,3 +205,4 @@ export {
   TimelineHeading,
   TimelineLine,
 };
+

@@ -1,5 +1,4 @@
-"use client";
-import Link from "next/link";
+import { Link } from "@tanstack/react-router";
 import { useState } from "react";
 import { Menu } from "lucide-react";
 
@@ -11,36 +10,41 @@ import {
   SheetTrigger,
 } from "@/components/ui/sheet";
 import { site } from "@/content/site";
+import { contactContent } from "@/content/contact";
+import { caseStudiesContent } from "@/content/case-studies";
 import { cn } from "@/lib/utils";
 
 const Header = () => {
   const [isOpen, setIsOpen] = useState(false);
 
   return (
-    <header className="mt-8 sm:mt-12 flex items-center justify-between gap-4 sm:gap-6">
-      <Link href="/" className="text-sm font-semibold text-muted-foreground">
+    <header className="flex items-center justify-between gap-4 sm:gap-6 h-(--header-height)">
+      <Link to="/" className="text-sm font-semibold text-muted-foreground">
         {site.name} · {site.title}
       </Link>
 
       {/* Desktop Navigation */}
       <nav className="hidden md:flex items-center gap-4 text-sm text-muted-foreground">
-        <Link href="/about" className="transition hover:text-foreground">
+        <Link to="/about" className="transition hover:text-foreground">
           About
         </Link>
-        <Link href="/case-studies/brainrot" className="transition hover:text-foreground">
-          Case study
+        <Link
+          to="/case-studies/brainrot"
+          className="transition hover:text-foreground"
+        >
+          {caseStudiesContent.brainrot.eyebrow}
         </Link>
-        <Link href="/contact" className="transition hover:text-foreground">
+        <Link to="/contact" className="transition hover:text-foreground">
           Contact
         </Link>
-        <Link
+        <a
           href={site.calendly}
           target="_blank"
           rel="noreferrer"
           className={cn(buttonVariants({ size: "sm" }), "gap-1")}
         >
-          Book intro
-        </Link>
+            {contactContent.cta.bookIntro}
+        </a>
       </nav>
 
       {/* Mobile Navigation */}
@@ -55,35 +59,35 @@ const Header = () => {
           <SheetTitle className="sr-only">Navigation Menu</SheetTitle>
           <nav className="flex flex-col gap-4 text-sm mt-6">
             <Link
-              href="/about"
+              to="/about"
               className="transition hover:text-foreground py-2"
               onClick={() => setIsOpen(false)}
             >
               About
             </Link>
             <Link
-              href="/case-studies/brainrot"
+              to="/case-studies/brainrot"
               className="transition hover:text-foreground py-2"
               onClick={() => setIsOpen(false)}
             >
-              Case study
+              {caseStudiesContent.brainrot.eyebrow}
             </Link>
             <Link
-              href="/contact"
+              to="/contact"
               className="transition hover:text-foreground py-2"
               onClick={() => setIsOpen(false)}
             >
               Contact
             </Link>
-            <Link
+            <a
               href={site.calendly}
               target="_blank"
               rel="noreferrer"
               className={cn(buttonVariants({ size: "sm" }), "gap-1 mt-4 w-fit")}
               onClick={() => setIsOpen(false)}
             >
-              Book intro
-            </Link>
+              {contactContent.cta.bookIntro}
+            </a>
           </nav>
         </SheetContent>
       </Sheet>

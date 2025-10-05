@@ -1,6 +1,6 @@
-import type React from "react";
-
-declare module "*.mdx" {
-  const MDXComponent: (props: React.ComponentPropsWithoutRef<"div">) => JSX.Element;
-  export default MDXComponent;
+declare module '*.mdx' {
+  let MDXComponent: (props: any) => JSX.Element
+  export const meta: any
+  export default MDXComponent
 }
+

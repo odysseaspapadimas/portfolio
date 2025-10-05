@@ -55,3 +55,4 @@ export const experience: TimelineItem[] = [
     link: "/case-studies/brainrot",
   },
 ];
+
