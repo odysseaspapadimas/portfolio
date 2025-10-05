@@ -1,5 +1,11 @@
+# Keep a list of build-only deps used by the project toolchain
 onlyBuiltDependencies:
   - '@tailwindcss/oxide'
   - esbuild
   - sharp
   - workerd
+
+# Define workspace packages so pnpm recognizes this repo as a workspace.
+# Use '.' to indicate the root package (single-package repository).
+packages:
+  - '.'
