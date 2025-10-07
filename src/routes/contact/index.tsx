@@ -1,7 +1,7 @@
 import { buttonVariants } from "@/components/ui/button";
 import Page from "@/components/ui/Page";
-import { site } from "@/content/site";
 import { contactContent } from "@/content/contact";
+import { site } from "@/content/site";
 import { cn } from "@/lib/utils";
 import { useMutation } from "@tanstack/react-query";
 import { createFileRoute, redirect } from "@tanstack/react-router";
@@ -22,7 +22,6 @@ export const sendContactFn = createServerFn({ method: "POST" })
   .inputValidator((data: ContactPayload) => data)
   .handler(async ({ data }) => {
     const { name, email, message, source } = data;
-
     if (!name || !email || !message) {
       throw new Error("Missing required fields");
     }
@@ -202,7 +201,9 @@ function ContactPage() {
         <h2 className="text-lg sm:text-xl font-semibold">
           {contactContent.sidebar.heading}
         </h2>
-        <p className="text-sm text-muted-foreground">{contactContent.sidebar.paragraph}</p>
+        <p className="text-sm text-muted-foreground">
+          {contactContent.sidebar.paragraph}
+        </p>
         <a
           href={site.calendly}
           target="_blank"
