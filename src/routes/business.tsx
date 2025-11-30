@@ -72,22 +72,6 @@ function BusinessPage() {
         </div>
       </section>
 
-      {/* Testimonial (render only if present) */}
-      {businessContent.testimonial && (
-        <section className="space-y-6">
-          <div className="space-y-3">
-            <h3 className="text-lg font-semibold text-foreground">{/* adapt heading when single testimonial */}
-              {"Client highlight"}
-            </h3>
-            <div className="mt-3 rounded-2xl border border-border/60 bg-card/10 p-6">
-              <blockquote className="text-sm text-muted-foreground">“{businessContent.testimonial.quote}”</blockquote>
-              <div className="mt-3 text-sm text-foreground font-semibold">{businessContent.testimonial.author}</div>
-              <div className="text-xs text-muted-foreground">{businessContent.testimonial.role}</div>
-            </div>
-          </div>
-        </section>
-      )}
-
       <section className="space-y-6">
         <div className="space-y-2">
           <h2 className="text-2xl font-semibold">{businessContent.capabilities.title}</h2>

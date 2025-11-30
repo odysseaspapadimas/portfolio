@@ -15,9 +15,6 @@ type ContactPayload = {
   source: string;
 };
 
-const webhookURL =
-  "https://discord.com/api/webhooks/1421527740640919608/bZgU1SOovpTtFpbKzullrjLlsgAypPu1Cj7C_FpL71dzYrBaXPOajfEBtETuqXkGguMb";
-
 export const sendContactFn = createServerFn({ method: "POST" })
   .inputValidator((data: ContactPayload) => data)
   .handler(async ({ data }) => {
@@ -29,6 +26,11 @@ export const sendContactFn = createServerFn({ method: "POST" })
     const discordMessage = `**New Contact Form Submission**\n\n**Name:** ${name}\n**Email:** ${email}\n**Source:** ${
       source || "Direct"
     }\n**Message:**\n${message}`;
+
+    const webhookURL = process.env.DISCORD_WEBHOOK_URL;
+    if (!webhookURL) {
+      throw new Error("Discord webhook URL is not configured");
+    }
 
     const response = await fetch(webhookURL, {
       method: "POST",
